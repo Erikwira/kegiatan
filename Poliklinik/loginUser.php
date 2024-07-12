@@ -18,6 +18,31 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <style>
+      .navbar{
+        position: fixed;
+        width: 100%;
+        padding: 10px 30px;
+      }
+      .row{
+        margin: 0;
+        .col{
+          .btn{
+            margin-top: 10px;
+          }
+        }
+      }
+      body{
+        background: #F8F4E1;
+      }
+      .garis{
+        border: 5px solid #AF8F6F;
+        border-radius: 5px;
+        opacity: 1;
+      }
+      
+      .table{
+        margin: 10px 0;
+      }
       .container{
         height: 600px;
       }
@@ -38,17 +63,19 @@
       .form{
         padding: 15px 35px;
         .col-12{
-          padding: 5px 0;
+          padding: 0 !important;
+          margin: 5px 0 !important;
           .form-label{
-            font-size: 16px;
-            font-weight: 500;
+            font-size: 20px;
+            font-weight: 400;
           }
           .form-control{
-            border: 1px solid rgba(0, 0, 0, 0.3);
+            border: none;
             border-radius: 5px;
             padding: 10px;
-            font-size: 14px;
-            font-weight: 500;
+            font-size: 16px;
+            font-weight: 400;
+            box-shadow: 2px 2px 5px rgba(84, 51, 16, 0.25);
           }
           .form-control:hover{
             border: 1px solid rgba(0, 0, 0, 0.8);
@@ -60,7 +87,7 @@
         .tombol{
           margin: 10px 0;
           .btn{
-            background-color: #0096FF;
+            background-color: #543310;
             color: #fff;
             font-size: 18px;
             font-weight: 500;
@@ -68,7 +95,7 @@
             width: 100%;
           }
           .btn:hover{
-            background-color: #72FFFF;
+            background-color: #F8F4E1;
             color: #000;
           }
         }
@@ -79,7 +106,7 @@
             font-size: 16px;
             font-weight: 700;
             cursor: pointer;
-            color: #5800FF;
+            color: #543310;
             text-decoration: none;
           }
         }

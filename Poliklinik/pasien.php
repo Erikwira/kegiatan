@@ -13,12 +13,60 @@
     crossorigin="anonymous">   
     <title>Para Pasien</title><!--Judul Halaman-->
     <style>
+      .navbar{
+        position: fixed;
+        width: 100%;
+        padding: 10px 30px;
+      }
       .row{
+        margin: 0;
         .col{
           .btn{
             margin-top: 10px;
           }
         }
+      }
+      body{
+        background: #F8F4E1;
+      }
+      .garis{
+        border: 5px solid #AF8F6F;
+        border-radius: 5px;
+        opacity: 1;
+      }
+      .form{
+        .col-12{
+          padding: 0 !important;
+          margin: 5px 0 !important;
+          .form-label{
+            font-size: 20px;
+            font-weight: 400;
+          }
+          .form-control{
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: 400;
+            box-shadow: 2px 2px 5px rgba(84, 51, 16, 0.25);
+          }
+        }
+        .col{
+          .btn{
+            background: #543310;
+            border: none;
+            font-size: 18px;
+            font-weight: 400;
+          }
+          .btn:hover{
+            background: #fff;
+            color: #543310;
+            box-shadow: 2px 2px 5px rgba(84, 51, 16, 0.4);
+          }
+        }
+      }
+      .table{
+        margin: 10px 0;
       }
     </style>
 </head>
@@ -35,7 +83,7 @@
         Data Pasien Dokter Tercatat Disini.
       </small>
     </h3>
-    <hr>
+    <hr class="garis">
 
     <!--Form Input Data Dokter-->
     <form class="form row" method="POST" action="" name="myForm" onsubmit="return(validate());">
@@ -62,19 +110,19 @@
         }
       ?>
       <div class="col-12">
-        <label for="inputNama" class="form-label fw-bold">
+        <label for="inputNama" class="form-label">
           Nama
         </label>
         <input type="text" class="form-control" name="nama" id="inputNama" placeholder="Masukkan Nama Lengkap" value="<?php echo $nama ?>">
       </div>
       <div class="col-12">
-        <label for="inputAlamat" class="form-label fw-bold">
+        <label for="inputAlamat" class="form-label">
           Alamat
         </label>
         <input type="text" class="form-control" name="alamat" id="inputAlamat" placeholder="Masukkan Alamat Tinggal" value="<?php echo $alamat ?>">
       </div>
       <div class="col-12">
-        <label for="inputNoHp" class="form-label fw-bold">
+        <label for="inputNoHp" class="form-label">
           Nomor Handphone
         </label>
         <input type="number" class="form-control" name="no_hp" id="inputNoHp" placeholder="Masukkan Nomor Handphone" value="<?php echo $no_hp ?>">

@@ -11,7 +11,7 @@
     rel="stylesheet" 
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
     crossorigin="anonymous">   
-    <title>Para Dokter</title><!--Judul Halaman-->
+    <title>Para Pasien</title><!--Judul Halaman-->
     <style>
       .navbar{
         position: fixed;
@@ -77,10 +77,10 @@
 
   <div class="container">
     <h3>
-      Anggota Petugas Dokter
+      Obat
       <br>
       <small class="text-muted">
-        Data Anggota Dokter Tercatat Disini.
+        Data Obat Tercatat Disini.
       </small>
     </h3>
     <hr class="garis">
@@ -89,19 +89,19 @@
     <form class="form row" method="POST" action="" name="myForm" onsubmit="return(validate());">
       <!-- Kode php untuk menghubungkan form dengan database -->
       <?php
-        $nama = '';
-        $alamat = '';
-        $no_hp = '';
+        $nama_obat = '';
+        $kemasan = '';
+        $harga = '';
         if (isset($_GET['id'])) {
           $ambil = mysqli_query(
             $mysqli, 
-            "SELECT * FROM dokter 
+            "SELECT * FROM obat 
             WHERE id='" . $_GET['id'] . "'"
           );
           while ($row = mysqli_fetch_array($ambil)) {
-            $nama = $row['nama'];
-            $alamat = $row['alamat'];
-            $no_hp = $row['no_hp'];
+            $nama_obat = $row['nama_obat'];
+            $kemasan = $row['kemasan'];
+            $harga = $row['harga'];
           }
       ?>
         <input type="hidden" name="id" value="<?php echo
@@ -110,53 +110,53 @@
         }
       ?>
       <div class="col-12">
-        <label for="inputNama" class="form-label">
-          Nama
+        <label for="inputNamaObat" class="form-label">
+          Nama Obat
         </label>
-        <input type="text" class="form-control" name="nama" id="inputNama" placeholder="Masukkan Nama Lengkap" value="<?php echo $nama ?>">
+        <input type="text" class="form-control" name="nama_obat" id="inputNamaObat" placeholder="Masukkan Nama Obat" value="<?php echo $nama_obat ?>">
       </div>
       <div class="col-12">
-        <label for="inputAlamat" class="form-label">
-          Alamat
+        <label for="inputKemasan" class="form-label">
+          Kemasan
         </label>
-        <input type="text" class="form-control" name="alamat" id="inputAlamat" placeholder="Masukkan Alamat Tinggal" value="<?php echo $alamat ?>">
+        <input type="text" class="form-control" name="kemasan" id="inputKemasan" placeholder="Masukkan Nama Kemasan" value="<?php echo $kemasan ?>">
       </div>
       <div class="col-12">
-        <label for="inputNoHp" class="form-label">
-          Nomor Handphone
+        <label for="inputHarga" class="form-label">
+          Harga
         </label>
-        <input type="number" class="form-control" name="no_hp" id="inputNoHp" placeholder="Masukkan Nomor Handphone" value="<?php echo $no_hp ?>">
+        <input type="number" class="form-control" name="harga" id="inputHarga" placeholder="Masukkan Harga Obat" value="<?php echo $harga ?>">
       </div>
       <div class="col">
         <button type="submit" class="btn btn-primary rounded-pill px-3" name="simpan">Simpan</button>
       </div>
     </form>
 
-    <!--Tabel Data Dokter-->
+    <!--Tabel Data Obat-->
     <table class="table table-hover">
       <!--thead atau baris judul-->
       <thead>
         <tr>
             <th scope="col">No</th>
-            <th scope="col">Nama</th>
-            <th scope="col">Alamat</th>
-            <th scope="col">Nomor Handphone</th>
+            <th scope="col">Nama Obat</th>
+            <th scope="col">Kemasan</th>
+            <th scope="col">Harga</th>
             <th scope="col">Aksi</th>
         </tr>
       </thead>
     <?php
-      $result = mysqli_query($mysqli, "SELECT * FROM dokter");
+      $result = mysqli_query($mysqli, "SELECT * FROM obat");
       $no = 1;
       while ($data = mysqli_fetch_array($result)) {
     ?>
       <tr>
         <td><?php echo $no++ ?></td>
-        <td><?php echo $data['nama'] ?></td>
-        <td><?php echo $data['alamat'] ?></td>
-        <td><?php echo $data['no_hp'] ?></td>
+        <td><?php echo $data['nama_obat'] ?></td>
+        <td><?php echo $data['kemasan'] ?></td>
+        <td><?php echo $data['harga'] ?></td>
         <td>
-          <a class="btn btn-success rounded-pill px-3" href="index.php?page=dokter&id=<?php echo $data['id'] ?>">Ubah</a>
-          <a class="btn btn-danger rounded-pill px-3" href="index.php?page=dokter&id=<?php echo $data['id'] ?>&aksi=hapus">Hapus</a>
+          <a class="btn btn-success rounded-pill px-3" href="index.php?page=obat&id=<?php echo $data['id'] ?>">Ubah</a>
+          <a class="btn btn-danger rounded-pill px-3" href="index.php?page=obat&id=<?php echo $data['id'] ?>&aksi=hapus">Hapus</a>
         </td>
       </tr>
       <?php
@@ -167,27 +167,27 @@
       if (isset($_POST['id'])) {
         $ubah = mysqli_query(
           $mysqli, 
-          "UPDATE dokter SET 
-          nama = '" . $_POST['nama'] . "',
-          alamat = '" . $_POST['alamat'] . "',
-          no_hp = '" . $_POST['no_hp'] . "'
+          "UPDATE obat SET 
+          nama_obat = '" . $_POST['nama_obat'] . "',
+          kemasan = '" . $_POST['kemasan'] . "',
+          harga = '" . $_POST['harga'] . "'
           WHERE
           id = '" . $_POST['id'] . "'"
         );
       } else {
         $tambah = mysqli_query(
           $mysqli, 
-          "INSERT INTO dokter(nama,alamat,no_hp) 
+          "INSERT INTO obat(nama_obat,kemasan,harga) 
           VALUES ( 
-            '" . $_POST['nama'] . "',
-            '" . $_POST['alamat'] . "',
-            '" . $_POST['no_hp'] . "'
+            '" . $_POST['nama_obat'] . "',
+            '" . $_POST['kemasan'] . "',
+            '" . $_POST['harga'] . "'
           )"
         );
       }
 
       echo "<script> 
-              document.location='index.php?page=dokter';
+              document.location='index.php?page=obat';
             </script>";
     }
 
@@ -195,21 +195,21 @@
       if ($_GET['aksi'] == 'hapus') {
         $hapus = mysqli_query(
           $mysqli, 
-          "DELETE FROM dokter WHERE id = '" . $_GET['id'] . "'"
+          "DELETE FROM obat WHERE id = '" . $_GET['id'] . "'"
         );
       } else if ($_GET['aksi'] == 'ubah_data') {
         $ubah_data = mysqli_query(
-          $mysqli, "UPDATE dokter SET 
-          nama = '" . $_GET['nama'] . "', 
-          alamat = '" . $_GET['alamat'] . "', 
-          no_hp = '" . $_GET['no_hp'] . "' 
+          $mysqli, "UPDATE obat SET 
+          nama_obat = '" . $_GET['nama_obat'] . "', 
+          kemasan = '" . $_GET['kemasan'] . "', 
+          harga = '" . $_GET['harga'] . "' 
           WHERE
           id = '" . $_GET['id'] . "'"
         );
       }
 
       echo "<script> 
-              document.location='index.php?page=dokter';
+              document.location='index.php?page=obat';
             </script>";
     }
     ?>

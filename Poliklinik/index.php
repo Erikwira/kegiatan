@@ -12,18 +12,124 @@
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
     crossorigin="anonymous">   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
     <title>Poliklinik Sekawan</title>   <!--Judul Halaman-->
+    <style>
+      .navbar{
+        position: fixed;
+        width: 100%;
+        padding: 10px 30px;
+      }
+      .navbar, .container-fluid{
+        background-color: #543310;
+      }
+      .container-fluid{
+        .navbar-brand{
+          color: #fff;
+          font-size: 22px;
+          font-weight: 500;
+        }
+        .collapse{
+          .navbar-nav{
+            .nav-item{
+              margin-right: 5px;
+              a{
+                color: #fff;
+                font-size: 16px;
+                font-weight: 500;
+                border-radius: 10px;
+              }
+              a:hover{
+                background-color: #fff;
+                color: #543310;
+              }
+              .dropdown-menu{
+                border: 1px solid #543310;
+                top: 55px;
+                padding: 5px;
+                li{
+                  .dropdown-item{
+                    color: #543310;
+                    font-size: 16px;
+                    font-weight: 500;
+                    border-radius: 4px;
+                  }
+                  .dropdown-item:hover{
+                    background-color: #543310;
+                    color: #fff;
+                  }
+                }
+              }
+              .dropdown-menu.show{
+                padding: 10px;
+              }
+            }
+          }
+        }
+        .navbar-toggler{
+          background-color: #543310;
+          border: 4px solid #fff;
+          border-radius: 5px;
+        }
+        .navbar-toggler:focus{
+          box-shadow: 0 0 0 .25rem #fff;
+        }
+        .show{
+          padding: 10px 0;
+          .navbar-nav{
+            .nav-item{
+              a{
+                padding: 5px 10px;
+                margin: 2px;
+              }
+            }
+          }
+        }
+      }
+      body{
+        background: #F8F4E1;
+        .container{
+          width: 100%;
+          height: 100vh;
+        }
+        .konten{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          .isi{
+            font-size: 32px;
+            font-weight: 500;
+          }
+          .isi-konten{
+            font-size: 20px;
+            font-weight: 400;
+          }
+        }
+        .container-page {
+          height: 100%;
+        }
+
+        .konten-page {
+          display: block;
+          padding-top: 70px;
+          .isi{
+            padding: 0 0 0 110px;
+            font-size: 48px;
+            font-weight: 700;
+          }
+        }
+      }
+    </style>
 </head>
 <body>
   <?php
     session_start();
     include_once("koneksi.php");
   ?>
-  <nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
-        Sistem Informasi Poliklinik
+        Poliklinik Sekawan
       </a>
       <button class="navbar-toggler"
         type="button" data-bs-toggle="collapse"
@@ -55,6 +161,11 @@
                   Pasien
                 </a>
               </li>
+              <li>
+                <a class="dropdown-item" href="index.php?page=obat">
+                  Obat
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
@@ -82,15 +193,19 @@
     </div>
   </nav>
 
-  <main role="main" class="container">
+  <main role="main" class="<?php echo isset($_GET['page']) ? 'container-page' : 'container'; ?> <?php echo isset($_GET['page']) ? 'konten-page' : 'konten'; ?>">
     <?php
       if (isset($_GET['page'])) {
     ?>
-        <h2><?php echo ucwords($_GET['page']) ?></h2>
+        <h2 class="isi"><?php echo ucwords($_GET['page']) ?></h2>
     <?php
         include($_GET['page'] . ".php");
       } else {
-        echo "Selamat Datang di Sistem Informasi Poliklinik";
+        ?>
+        <h2 class="isi">Selamat Datang di Poliklinik Sekawan</h2>
+        <p class="isi-konten">Website Sistem Informasi Poliklinik</p>
+        <p class="isi-konten">Melayani Dengan Nyaman, Aman Dan Sopan</p>
+        <?php
       }
     ?>
   </main>
