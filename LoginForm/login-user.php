@@ -121,7 +121,11 @@
             if($password == $row['password']){
               $_SESSION['login'] = true;
               $_SESSION['id'] = $row['id'];
-              header('Location: index.php');
+              echo "<script>
+                  alert('Login berhasil!');
+                  window.location.href = 'index.php';
+                  </script>";
+              exit();
             } else{
             $errors = "Password Salah";
             ?>
@@ -141,6 +145,24 @@
             ?>
             </div>
           <?php
+          } else if ($email == ""){
+            $errors = "Email Belum Diisi";
+            ?>
+            <div class="col-12 alert alert-danger text-center">
+            <?php
+              echo $errors;  
+            ?>
+            </div>
+            <?php
+          } else{
+            $errors = "Sepertinya Anda Belum Registrasi";
+            ?>
+            <div class="col-12 alert alert-danger text-center">
+            <?php
+              echo $errors;
+            ?>
+            </div>
+            <?php
           }
         }
         ?>

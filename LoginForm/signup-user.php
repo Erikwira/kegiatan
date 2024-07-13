@@ -176,25 +176,34 @@
           <?php
             } else {
               if($password == $cpassword){
-                if (isset($_POST['id'])) {
-                  $tambah = mysqli_query(
-                    $mysqli, "INSERT INTO usertable(name,email,password) 
-                    VALUES ( 
-                      '" . $_POST['name'] . "',
-                      '" . $_POST['email'] . "',
-                      '" . $_POST['password'] . "'
-                    )"
-                  );
+                /* if(isset($_POST['id'])) { */
+                $tambah = mysqli_query(
+                  $mysqli, "INSERT INTO usertable (name,email,password) 
+                  VALUES ( 
+                    '" . $_POST['name'] . "',
+                    '" . $_POST['email'] . "',
+                    '" . $_POST['password'] . "'
+                  )"    
+                );
+                if ($tambah) {
+                  echo "<script>
+                  alert('Signup berhasil!');
+                  </script>";
                 } else {
-                  $errors = "Password Tidak Sama";
-                  ?>
-                  <div class="col-12 alert alert-danger text-center">
-                  <?php
-                    echo $errors;  
-                  ?>
-                  </div>
-              <?php
+                  echo "<script>
+                  alert('Signup gagal! Mohon coba lagi.');
+                  </script>";
                 }
+              }
+              /* } */ else {
+                $errors = "Password Tidak Sama";
+                ?>
+                <div class="col-12 alert alert-danger text-center">
+                <?php
+                  echo $errors;  
+                ?>
+                </div>
+            <?php
               }
             }
           }
